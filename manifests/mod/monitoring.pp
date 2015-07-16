@@ -2,12 +2,24 @@
 #
 class icingaweb2::mod::monitoring (
     $enabled   = false,
-    $instances = {},
+    $instances = $::icingaweb2::params::monitoring_instances,
 ) {
     require ::icingaweb2
 
     validate_bool($enabled)
     validate_hash($instances)
+
+    file { "${::icingaweb2::config_dir}/modules/monitoring":
+        ensure => link,
+        target => "${::icingaweb2::web_root}/modules/monitoring"
+    }
+
+    if $enabled {
+        file { "${::icingaweb2::config_dir}/enabledModules/monitoring":
+            ensure => link,
+            target => "${::icingaweb2::web_root}/modules/monitoring"
+        }
+    }
 
     file { "${::icingaweb2::web_root}/modules/monitoring/config.ini":
         ensure => present,
@@ -75,15 +87,4 @@ class icingaweb2::mod::monitoring (
         }
     }
 
-    file { "${::icingaweb2::config_dir}/modules/monitoring":
-            ensure => link,
-            target => "${::icingaweb2::web_root}/modules/monitoring"
-        }
-
-    if $enabled {
-        file { "${::icingaweb2::config_dir}/enabledModules/monitoring":
-            ensure => link,
-            target => "${::icingaweb2::web_root}/modules/monitoring"
-        }
-    }
 }
