@@ -23,7 +23,7 @@ class icingaweb2::mod::monitoring (
 
     file { "${::icingaweb2::web_root}/modules/monitoring/config.ini":
         ensure => present,
-        user   => "www-data",
+        owner  => "www-data",
         group  => "root",
         mode   => 644,
     }
@@ -37,7 +37,7 @@ class icingaweb2::mod::monitoring (
 
     file { "${::icingaweb2::web_root}/modules/monitoring/backends.ini":
         ensure => present,
-        user   => "www-data",
+        owner  => "www-data",
         group  => "root",
         mode   => 644,
     }
@@ -58,7 +58,7 @@ class icingaweb2::mod::monitoring (
 
     file { "${::icingaweb2::web_root}/modules/monitoring/instances.ini":
         ensure => present,
-        user   => "www-data",
+        owner  => "www-data",
         group  => "root",
         mode   => 644,
     }
