@@ -1,5 +1,4 @@
 class icingaweb2::database {
-  require ::icingaweb2
 
   validate_re($::icingaweb2::web_db, '^(mysql|pgsql)$', "Database type ${::icingaweb2::web_db} is not supported!")
 
