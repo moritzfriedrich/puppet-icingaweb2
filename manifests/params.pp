@@ -39,6 +39,12 @@ class icingaweb2::params {
   $web_db_prefix     = 'icingaweb2_'
   $web_db_user       = 'icingaweb2'
   $web_type          = 'db'
+  $monitoring_instances = {
+    icinga => {
+      transport => "local",
+      path      => "/var/run/icinga2/cmd/icinga2.cmd",
+    }
+  }
 
   case $::osfamily {
     'RedHat': {
