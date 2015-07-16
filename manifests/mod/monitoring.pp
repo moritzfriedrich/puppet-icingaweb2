@@ -11,16 +11,19 @@ class icingaweb2::mod::monitoring (
     validate_hash($instances)
     validate_string($security)
 
+    $monitoring_ensure = $enabled ? {
+        false => "absent",
+        true  => "link",
+    }
+
     file { "${::icingaweb2::config_dir}/modules/monitoring":
         ensure => link,
         target => "${::icingaweb2::web_root}/modules/monitoring",
     }
-
-    if $enabled {
-        file { "${::icingaweb2::config_dir}/enabledModules/monitoring":
-            ensure => link,
-            target => "${::icingaweb2::web_root}/modules/monitoring",
-        }
+    
+    file { "${::icingaweb2::config_dir}/enabledModules/monitoring":
+        ensure => $monitoring_ensure,
+        target => "${::icingaweb2::web_root}/modules/monitoring",
     }
 
     file { "${::icingaweb2::web_root}/modules/monitoring/config.ini":
