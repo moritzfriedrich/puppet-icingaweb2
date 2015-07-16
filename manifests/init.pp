@@ -157,6 +157,9 @@
 # $web_db_user::
 #                         Default:
 #
+# $web_db_schema::
+#                         Default: undef
+#
 # $web_root::             Default location for when using using git.
 #                         Default: operating system specific.
 #
@@ -214,11 +217,13 @@ class icingaweb2 (
   $web_db_port                       = $::icingaweb2::params::web_db_port,
   $web_db_prefix                     = $::icingaweb2::params::web_db_prefix,
   $web_db_user                       = $::icingaweb2::params::web_db_user,
+  $web_db_schema                     = undef,
   $web_root                          = $::icingaweb2::params::web_root,
   $web_type                          = $::icingaweb2::params::web_type,
 ) inherits ::icingaweb2::params {
   class { '::icingaweb2::preinstall': } ->
   class { '::icingaweb2::install': } ->
+  class { '::icingaweb2::database': } ->
   class { '::icingaweb2::config': } ->
   Class['::icingaweb2']
 
