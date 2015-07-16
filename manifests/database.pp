@@ -35,7 +35,7 @@ class icingaweb2::database {
       user        => 'root',
       path        => $::path,
       environment => [
-        "PGPASSWORD=${::icinga2::web_db_pass}",
+        "PGPASSWORD=${::icingaweb2::web_db_pass}",
       ],
       command     => "psql -U '${::icingaweb2::web_db_user}' -h '${::icingaweb2::web_db_host}' ${port} -d '${::icingaweb2::web_db_name}' < '${web_db_schema}' && touch ${::icingaweb2::config_dir}/postgres_schema_loaded.txt",
       creates     => "${::icingaweb2::config_dir}/postgres_schema_loaded.txt",
