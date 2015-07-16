@@ -3,11 +3,13 @@
 class icingaweb2::mod::monitoring (
     $enabled   = false,
     $instances = $::icingaweb2::params::monitoring_instances,
+    $security  = "",
 ) {
     require ::icingaweb2
 
     validate_bool($enabled)
     validate_hash($instances)
+    validate_string($security)
 
     file { "${::icingaweb2::config_dir}/modules/monitoring":
         ensure => link,
@@ -32,7 +34,7 @@ class icingaweb2::mod::monitoring (
         path    => "${::icingaweb2::web_root}/modules/monitoring/config.ini",
         section => "security",
         setting => 'protected_customvars',
-        value   => "\"*pw*,*pass*,community\"",
+        value   => "\"${security}\"",
     }
 
     file { "${::icingaweb2::web_root}/modules/monitoring/backends.ini":
