@@ -32,7 +32,7 @@ class icingaweb2::database {
       $port = undef
     }
 
-    exec { 'postgres_schema_load':
+    exec { 'icingaweb2_postgres_schema_load':
       user        => 'root',
       path        => $::path,
       environment => [
