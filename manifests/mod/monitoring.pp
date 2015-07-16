@@ -1,7 +1,7 @@
 # == Class icingaweb2::mod::monitoring
 #
 class icingaweb2::mod::monitoring (
-    $enabled   = false,
+    $enabled   = true,
     $instances = $::icingaweb2::params::monitoring_instances,
     $security  = "",
 ) {

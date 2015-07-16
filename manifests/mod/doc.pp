@@ -1,7 +1,7 @@
 # == Class icingaweb2::mod::doc
 #
 class icingaweb2::mod::doc (
-    $enabled    = false,
+    $enabled    = true,
 ) {
     require ::icingaweb2
 
