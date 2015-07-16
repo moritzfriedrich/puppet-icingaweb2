@@ -11,13 +11,13 @@ class icingaweb2::mod::monitoring (
 
     file { "${::icingaweb2::config_dir}/modules/monitoring":
         ensure => link,
-        target => "${::icingaweb2::web_root}/modules/monitoring"
+        target => "${::icingaweb2::web_root}/modules/monitoring",
     }
 
     if $enabled {
         file { "${::icingaweb2::config_dir}/enabledModules/monitoring":
             ensure => link,
-            target => "${::icingaweb2::web_root}/modules/monitoring"
+            target => "${::icingaweb2::web_root}/modules/monitoring",
         }
     }
 
@@ -29,7 +29,7 @@ class icingaweb2::mod::monitoring (
     }
 
     ini_setting { "icingaweb2 module monitoring config protected_customvars":
-        path    => "${::icingaweb2::web_root}/modules/monitoring/config.ini"
+        path    => "${::icingaweb2::web_root}/modules/monitoring/config.ini",
         section => "security",
         setting => 'protected_customvars',
         value   => "\"*pw*,*pass*,community\"",
@@ -43,14 +43,14 @@ class icingaweb2::mod::monitoring (
     }
 
     ini_setting { "icingaweb2 module monitoring backend type":
-        path    => "${::icingaweb2::web_root}/modules/monitoring/backends.ini"
+        path    => "${::icingaweb2::web_root}/modules/monitoring/backends.ini",
         section => "icinga",
         setting => 'type',
         value   => "\"ido\"",
     }
 
     ini_setting { "icingaweb2 module monitoring backend resource":
-        path    => "${::icingaweb2::web_root}/modules/monitoring/backends.ini"
+        path    => "${::icingaweb2::web_root}/modules/monitoring/backends.ini",
         section => "icinga",
         setting => 'resource',
         value   => "\"icinga_ido\"",
@@ -73,14 +73,14 @@ class icingaweb2::mod::monitoring (
         $path,
         ) {
         ini_setting { "icingaweb2 module monitoring instance ${section} transport":
-            path    => "${::icingaweb2::web_root}/modules/monitoring/instances.ini"
+            path    => "${::icingaweb2::web_root}/modules/monitoring/instances.ini",
             section => $section,
             setting => 'transport',
             value   => "\"${transport}\"",
         }
 
         ini_setting { "icingaweb2 module monitoring instance ${section} path":
-            path    => "${::icingaweb2::web_root}/modules/monitoring/instances.ini"
+            path    => "${::icingaweb2::web_root}/modules/monitoring/instances.ini",
             section => $section,
             setting => 'path',
             value   => "\"${path}\"",
