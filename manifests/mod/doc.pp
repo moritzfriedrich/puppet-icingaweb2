@@ -8,8 +8,8 @@ class icingaweb2::mod::doc (
     validate_bool($enabled)
 
     $doc_ensure = $enabled ? {
-        false => "absent",
-        true  => "link",
+        false => 'absent',
+        true  => 'link',
     }
 
     file { "${::icingaweb2::config_dir}/modules/doc":
