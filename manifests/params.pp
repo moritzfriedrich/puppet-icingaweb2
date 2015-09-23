@@ -76,8 +76,8 @@ class icingaweb2::params {
   $web_type             = 'db'
   $monitoring_instances = {
     icinga => {
-      transport => "local",
-      path      => "/var/run/icinga2/cmd/icinga2.cmd",
+      transport => 'local',
+      path      => '/var/run/icinga2/cmd/icinga2.cmd',
     }
   }
 
