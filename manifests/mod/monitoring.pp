@@ -61,7 +61,7 @@ class icingaweb2::mod::monitoring (
         value   => "\"icinga_ido\"",
     }
 
-    file { "${::icingaweb2::web_root}/modules/monitoring/instances.ini":
+    file { "${::icingaweb2::web_root}/modules/monitoring/commandtransports.ini":
         ensure => present,
         owner  => 'www-data',
         group  => 'root',
